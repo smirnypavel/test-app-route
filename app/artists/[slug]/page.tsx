@@ -1,6 +1,8 @@
 import { Metadata, ResolvingMetadata } from "next";
-import { Props } from "next/script";
 
+interface Params {
+  slug: string;
+}
 async function getData(slug: any) {
   const res = await fetch(
     `https://events-4qv2.onrender.com/users/find/${slug}`
@@ -16,10 +18,10 @@ async function getData(slug: any) {
   return res.json();
 }
 export async function generateMetadata(
-  { params },
+  { params }: { params: Params },
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const { id } = params;
+  // const { id } = params;
 
   const repon = await getData(params.slug);
 
